@@ -65,7 +65,7 @@ int main()
         return -1;
     }
 
-    // �������� stb_image.h, ����� �� ���������� ����������� �������� ������������ y-��� (�� �������� ������)
+    // tell stb_image.h to flip the loaded textures around the y-axis (before loading the model)
     stbi_set_flip_vertically_on_load(true);
 
     // configuring the global state of OpenGL
