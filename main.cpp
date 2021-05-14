@@ -104,6 +104,7 @@ int main()
         glm::mat4 model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(-1.0f, -1.0f, -1.0f)); // move down to be in the center of the scene
         model = glm::scale(model, glm::vec3(0.7f, 0.7, 0.7f));	// the object is too large for our scene, so reduce it a little
+        model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.0f, 0.5f, 0.0f)); // rotation animation
         ourShader.setMat4("model", model);
         ourModel.Draw(ourShader);
 
