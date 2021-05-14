@@ -159,6 +159,8 @@
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="light_cube.fs" />
+    <None Include="light_cube.vs" />
     <None Include="model_loading.fs" />
     <None Include="model_loading.vs" />
   </ItemGroup>
