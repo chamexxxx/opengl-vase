@@ -8,3 +8,7 @@ Coursework in the discipline "Computer Graphics"
 * GLAD
 * GLM
 * Assimp
+
+## Preview
+
+![preview image](https://github.com/chamexxxx/opengl-vase/blob/main/preview.png)
