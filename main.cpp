@@ -27,6 +27,8 @@ float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
 
+float modelRotationAngle = 0;
+
 // timings
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f; // time of the last frame
@@ -254,7 +256,7 @@ int main()
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(-1.0f, -1.0f, -1.0f)); // move down to be in the center of the scene
         model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// the object is too large for our scene, so reduce it a little
-        model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.0f, 0.5f, 0.0f)); // rotation animation
+        model = glm::rotate(model, glm::radians(modelRotationAngle), glm::vec3(0.0f, 0.5f, 0.0f)); // rotation animation
         ourShader.setMat4("model", model);
         ourModel.Draw(ourShader);
 
@@ -285,6 +287,10 @@ void processInput(GLFWwindow* window)
         camera.ProcessKeyboard(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+        modelRotationAngle--;
+    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+        modelRotationAngle++;
 }
 
 // whenever the window is resized this callback function is called
