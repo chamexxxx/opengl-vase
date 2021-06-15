@@ -43,9 +43,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="model_loading.fs" />
-    <None Include="model_loading.vs" />
-    <None Include="light_cube.fs" />
-    <None Include="light_cube.vs" />
+    <None Include="shaders\light_cube.fs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="shaders\light_cube.vs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="shaders\model_loading.fs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="shaders\model_loading.vs">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

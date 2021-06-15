@@ -159,10 +159,10 @@
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="light_cube.fs" />
-    <None Include="light_cube.vs" />
-    <None Include="model_loading.fs" />
-    <None Include="model_loading.vs" />
+    <None Include="shaders\light_cube.fs" />
+    <None Include="shaders\light_cube.vs" />
+    <None Include="shaders\model_loading.fs" />
+    <None Include="shaders\model_loading.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -74,8 +74,8 @@ int main()
     glEnable(GL_DEPTH_TEST);
 
     // compiling a shader program
-    Shader ourShader("model_loading.vs", "model_loading.fs");
-    Shader lightCubeShader("light_cube.vs", "light_cube.fs");
+    Shader ourShader("shaders/model_loading.vs", "shaders/model_loading.fs");
+    Shader lightCubeShader("shaders/light_cube.vs", "shaders/light_cube.fs");
 
     // loading model
     Model ourModel("resources/objects/vase/vase.obj");
