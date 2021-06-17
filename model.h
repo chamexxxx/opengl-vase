@@ -68,7 +68,6 @@ private:
     }
 
     // recursive node processing
-    // we process each individual mesh located in the node and repeat this process for our child corners
     void processNode(aiNode* node, const aiScene* scene)
     {
         // process each mesh of the current node
@@ -79,7 +78,7 @@ private:
             aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
             meshes.push_back(processMesh(mesh, scene));
         }
-        // after we have processed all the meshes (if any), we begin to recursively process each of the child nodes
+        // after we have processed all the meshes, we begin to recursively process each of the child nodes
         for (unsigned int i = 0; i < node->mNumChildren; i++)
         {
             processNode(node->mChildren[i], scene);
@@ -119,7 +118,7 @@ private:
             {
                 glm::vec2 vec;
 
-                // The vertex can contain up to 8 different texture coordinates. We assume that we will not use models,
+                // the vertex can contain up to 8 different texture coordinates. We assume that we will not use models,
                 // where the vertex can contain several texture coordinates, so we always take the first set (0)
                 vec.x = mesh->mTextureCoords[0][i].x;
                 vec.y = mesh->mTextureCoords[0][i].y;
@@ -161,19 +160,19 @@ private:
         // reflections - texture_specularN
         // normals - texture_normalN
 
-        // 1. diffuse maps
+        // diffuse maps
         vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
         textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 
-        // 2. reflection maps
+        // reflection maps
         vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
         textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 
-        // 3. normal maps
+        // normal maps
         std::vector<Texture> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
         textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
 
-        // 4. height maps
+        // height maps
         std::vector<Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
         textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
@@ -181,8 +180,7 @@ private:
         return Mesh(vertices, indices, textures);
     }
 
-    // Check all textures for materials of the given type and load textures if they have not been loaded yet
-    // Required information is returned as a Texture
+    // check all textures for materials of the given type and load textures if they have not been loaded yet
     vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, string typeName)
     {
         vector<Texture> textures;
@@ -209,7 +207,7 @@ private:
                 texture.type = typeName;
                 texture.path = str.C_Str();
                 textures.push_back(texture);
-                textures_loaded.push_back(texture); // we save the texture in an array with already loaded textures, thereby ensuring that we do not have duplicate textures unnecessarily
+                textures_loaded.push_back(texture);
             }
         }
         return textures;

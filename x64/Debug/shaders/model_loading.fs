@@ -55,37 +55,30 @@ uniform SpotLight spotLight;
 uniform Material material;
 
 // function prototypes
-vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
-vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
-vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
+vec3 CalculateDirLight(DirLight light, vec3 normal, vec3 viewDir);
+vec3 CalculatePointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
+vec3 CalculateSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 
 void main()
 {    
     // properties
     vec3 norm = normalize(Normal);
     vec3 viewDir = normalize(viewPos - FragPos);
-    
-    // =====================================================
-    // Lighting is adjustable in 3 steps: directional lighting, spot light and optional flashlight.
-    // For each stage, a calculation function is defined that calculates the corresponding color from each light source.
-    // In the main () function, we take all the color calculations and add them together to determine the final color of the given fragment
-    // =====================================================
 	
-    // Stage 1: Directional lighting
-    vec3 result = CalcDirLight(dirLight, norm, viewDir);
+    // directional lighting
+    vec3 result = CalculateDirLight(dirLight, norm, viewDir);
 	
-    // Stage # 2: Point light sources
+    // point light sources
     for(int i = 0; i < NR_POINT_LIGHTS; i++)
-        result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);   
+        result += CalculatePointLight(pointLights[i], norm, FragPos, viewDir);   
 		
-    // Stage 3: Spotlight
-    result += CalcSpotLight(spotLight, norm, FragPos, viewDir);    
+    // spotlight
+    result += CalculateSpotLight(spotLight, norm, FragPos, viewDir);    
     
     FragColor = vec4(result, 1.0);
 }
 
-// calculating the color when using directional light
-vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
+vec3 CalculateDirLight(DirLight light, vec3 normal, vec3 viewDir)
 {
     vec3 lightDir = normalize(-light.direction);
 	
@@ -103,8 +96,7 @@ vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
     return (ambient + diffuse + specular);
 }
 
-// calculate the color when using a point light source
-vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
+vec3 CalculatePointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 {
     vec3 lightDir = normalize(light.position - fragPos);
 	
@@ -129,8 +121,7 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     return (ambient + diffuse + specular);
 }
 
-// calculate the color when using a spotlight
-vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
+vec3 CalculateSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 {
     vec3 lightDir = normalize(light.position - fragPos);
 	
