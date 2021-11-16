@@ -1,6 +1,6 @@
 # OpenGL vase
 
-Coursework in the discipline "Computer Graphics"
+Implementing a 3D vase model in OpenGL
 
 ## Requirements
 
